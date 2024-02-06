@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Date Night Planner</title>
+<style>
+body { font-family: Arial, sans-serif; }
+.container { max-width: 600px; margin: auto; padding: 20px; }
+h2 { color: #333; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('submitBtn').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        var activityPreference = document.getElementById('activityPreference').value;
+        var diningPreference = document.getElementById('diningPreference').value;
+        fetchActivities(activityPreference);
+        fetchDiningOptions(diningPreference);
+    });
+});
+
+function fetchActivities(pref) {
+    // Placeholder: Fetch activities based on preference
+    console.log('Fetching activities for:', pref);
+    // Simulate fetching activities
+    setTimeout(() => {
+        document.getElementById('activitiesResult').textContent = `Suggested activity for "${pref}" will be displayed here.`;
+    }, 500);
+}
+
+function fetchDiningOptions(pref) {
+    // Placeholder: Fetch dining options based on preference
+    console.log('Fetching dining options for:', pref);
+    // Simulate fetching dining options
+    setTimeout(() => {
+        document.getElementById('diningResult').textContent = `Suggested dining for "${pref}" will be displayed here.`;
+    }, 500);
+}
+</script>
 </head>
 <body>
-    
+<div class="container">
+    <h1>Date Night Planner</h1>
+    <form id="preferencesForm">
+        <label for="activityPreference">Activity Preference:</label>
+        <select id="activityPreference">
+            <option value="cinema">Cinema</option>
+            <option value="theatre">Theatre</option>
+            <option value="museum">Museum</option>
+            <option value="outdoor">Outdoor</option>
+        </select>
+        <label for="diningPreference">Dining Preference:</label>
+        <select id="diningPreference">
+            <option value="italian">Italian</option>
+            <option value="japanese">Japanese</option>
+            <option value="french">French</option>
+            <option value="vegan">Vegan</option>
+        </select>
+        <button type="button" id="submitBtn">Find Suggestions</button>
+    </form>
+    <h2>Activity Suggestions</h2>
+    <p id="activitiesResult">Your suggested activities will appear here.</p>
+    <h2>Dining Suggestions</h2>
+    <p id="diningResult">Your dining options will appear here.</p>
+</div>
 </body>
 </html>
