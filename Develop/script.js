@@ -1,5 +1,5 @@
 //JS code
-<script>
+
   // Function to fetch movies from Rotten Tomatoes
   function fetchMovies() {
     const apiKey = 'MY_ROTTEN_TOMATOES_API_KEY'; // Replace with my API key
@@ -49,4 +49,3 @@
 
   //Call the fetchMovies function when the page loads
   window.onload = fetchMovies;
-</script>
