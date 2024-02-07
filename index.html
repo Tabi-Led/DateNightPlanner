@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Date Night Planner</title>
-<style>
-body { font-family: Arial, sans-serif; background-color: #f8f8f8; }
-.container { max-width: 600px; margin: auto; padding: 20px; text-align: center; }
-h1 { color: #333; }
-p { margin-top: 0; }
-.form-section { text-align: left; margin-top: 30px; }
-label, select, button { display: block; margin: 10px 0; }
-button { cursor: pointer; }
-</style>
-</head>
-<body>
-<div class="container">
-    <h1>Date Night Planner</h1>
-    <p>Welcome to the Date Night Planner! Use this tool to find the perfect movie and dining options for your next date night. Just select your preferences and let us do the rest.</p>
-    <div class="form-section">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Date Night Planner</title>
+    <link rel="stylesheet" href="/Develop/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Date Night Planner</h1>
+      <p>
+        Welcome to the Date Night Planner! Use this tool to find the perfect
+        movie and dining options for your next date night. Just select your
+        preferences and let us do the rest.
+      </p>
+      <div class="form-section">
         <!-- Add the target="_blank" attribute to open the form submission in a new tab -->
-        <form id="preferencesForm" target="_blank" action="your-server-side-script-url" method="post">
-            <label for="movieGenre">Movie Genre:</label>
-            <select id="movieGenre" name="movieGenre">
-                <option value="action">Action</option>
-                <option value="romance">Romance</option>
-                <option value="comedy">Comedy</option>
-                <option value="horror">Horror</option>
-                <option value="sci-fi">Sci-Fi</option>
-                <option value="drama">Drama</option>
-                <option value="documentary">Documentary</option>
-            </select>
-            <label for="mealSpecification">Meal Specifications:</label>
-            <select id="mealSpecification" name="mealSpecification">
-                <option value="breakfast">Breakfast</option>
-                <option value="vegetarian">Vegetarian</option>
-                <option value="dessert">Dessert</option>
-                <option value="vegan">Vegan</option>
-            </select>
-            <button type="submit">Find Suggestions</button>
+        <form
+          id="preferencesForm"
+          target="_blank"
+          action="your-server-side-script-url"
+          method="post"
+        >
+          <label for="movieGenre">Movie Genre:</label>
+          <select id="movieGenre" name="movieGenre">
+            <option value="action">Action</option>
+            <option value="romance">Romance</option>
+            <option value="comedy">Comedy</option>
+            <option value="horror">Horror</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="drama">Drama</option>
+            <option value="documentary">Documentary</option>
+          </select>
+          <label for="mealSpecification">Meal Specifications:</label>
+          <select id="mealSpecification" name="mealSpecification">
+            <option value="breakfast">Breakfast</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="dessert">Dessert</option>
+            <option value="vegan">Vegan</option>
+          </select>
+          <button type="submit">Find Suggestions</button>
         </form>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>
