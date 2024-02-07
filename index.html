@@ -1,46 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Date Night Planner</title>
-    <link rel="stylesheet" href="/Develop/style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Date Night Planner</h1>
-      <p>
-        Welcome to the Date Night Planner! Use this tool to find the perfect
-        movie and dining options for your next date night. Just select your
-        preferences and let us do the rest.
-      </p>
-      <div class="form-section">
-        <!-- Add the target="_blank" attribute to open the form submission in a new tab -->
-        <form
-          id="preferencesForm"
-          target="_blank"
-          action="your-server-side-script-url"
-          method="post"
-        >
-          <label for="movieGenre">Movie Genre:</label>
-          <select id="movieGenre" name="movieGenre">
-            <option value="action">Action</option>
-            <option value="romance">Romance</option>
-            <option value="comedy">Comedy</option>
-            <option value="horror">Horror</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="drama">Drama</option>
-            <option value="documentary">Documentary</option>
-          </select>
-          <label for="mealSpecification">Meal Specifications:</label>
-          <select id="mealSpecification" name="mealSpecification">
-            <option value="breakfast">Breakfast</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="dessert">Dessert</option>
-            <option value="vegan">Vegan</option>
-          </select>
-          <button type="submit">Find Suggestions</button>
-        </form>
-      </div>
-    </div>
-  </body>
+<head>
+<meta charset="UTF-8">
+<title>Date Night Planner</title>
+<link rel="stylesheet" href="/Develop/style.css" />
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('submitBtn').addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        var activityPreference = document.getElementById('activityPreference').value;
+        var diningPreference = document.getElementById('diningPreference').value;
+        fetchActivities(activityPreference);
+        fetchDiningOptions(diningPreference);
+    });
+});
+function fetchActivities(pref) {
+    // Placeholder: Fetch activities based on preference
+    console.log('Fetching activities for:', pref);
+    // Simulate fetching activities
+    setTimeout(() => {
+        document.getElementById('activitiesResult').textContent = `Suggested activity for "${pref}" will be displayed here.`;
+    }, 500);
+}
+function fetchDiningOptions(pref) {
+    // Placeholder: Fetch dining options based on preference
+    console.log('Fetching dining options for:', pref);
+    // Simulate fetching dining options
+    setTimeout(() => {
+        document.getElementById('diningResult').textContent = `Suggested dining for "${pref}" will be displayed here.`;
+    }, 500);
+}
+</script>
+</head>
+<body>
+<div class="container">
+    <h1>Date Night Planner</h1>
+    <form id="preferencesForm">
+        <label for="activityPreference">Activity Preference:</label>
+        <select id="activityPreference">
+            <option value="cinema">Cinema</option>
+            <option value="theatre">Theatre</option>
+            <option value="museum">Museum</option>
+            <option value="outdoor">Outdoor</option>
+        </select>
+        <label for="diningPreference">Dining Preference:</label>
+        <select id="diningPreference">
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian">Vegetaian</option>
+            <option value="Desert">Desert</option>
+            <option value="Pasta">Pasta</option>
+        </select>
+        <button onclick="searchAPI()">Search</button>
+        <div id="results"></div>
+    </form>
+    <h2>Activity Suggestions</h2>
+    <p id="activitiesResult">Your suggested activities will appear here.</p>
+    <h2>Dining Suggestions</h2>
+    <p id="diningResult">Your dining options will appear here.</p>
+</div>
+    <script src="/Group Project 1/Project1/Develop/script.js"></script>
+</body>
 </html>

@@ -1,52 +1,30 @@
-//JS code
-<script>
-  // Function to fetch movies from Rotten Tomatoes
-  function fetchMovies() {
-    const apiKey = 'MY_ROTTEN_TOMATOES_API_KEY'; // Replace with my API key
-    const endpoint = 'https://api.rottentomatoes.com/api/public/v1.0/movies.json';
-    
-    // Customization for the query parameters based on user requirements
-    const queryParams = {
-      apikey: apiKey,
-      limit: 10, // Number of movies to fetch
-      q: 'movie', // Search query, you can modify this
-    };
-    
-    // Construct the URL with query parameters
-    const url = new URL(endpoint);
-    url.search = new URLSearchParams(queryParams);
-    
-    // Make the Fetch request
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the fetched movie data here
-        displayMovies(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching movies:', error);
+async function fetchData(apiUrl) {
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  }
+  function searchrecipeAPI() {
+    const recipeCategory = document.getElementById('category').value;
+    const apiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${RecipeCategory}`;
+    fetchData(apiUrl)
+      .then(data => {
+        if (data) {
+          displayResults(data);
+        } else {
+          document.getElementById('results').innerHTML = 'Failed to fetch data.';
+        }
       });
   }
-
-  // Function to display the fetched movies in the HTML
-  function displayMovies(data) {
-    const movieList = document.getElementById('movie-list');
-    movieList.innerHTML = ''; // Clear previous results
-    
-    // Loop through the fetched movies and display them
-    data.movies.forEach((movie) => {
-      const movieTitle = movie.title;
-      const movieYear = movie.year;
-      
-      // Create a <div> element to display each movie
-      const movieDiv = document.createElement('div');
-      movieDiv.textContent = `${movieTitle} (${movieYear})`;
-      
-      // Append the movie <div> to the movie list
-      movieList.appendChild(movieDiv);
-    });
+  function displayResults(data) {
+    // Display or process the fetched data as needed
+    console.log('Fetched data:', data);
+    document.getElementById('results').innerHTML = JSON.stringify(data, null, 2);
   }
-
-  //Call the fetchMovies function when the page loads
-  window.onload = fetchMovies;
-</script>
