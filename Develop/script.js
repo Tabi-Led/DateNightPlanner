@@ -1,58 +1,33 @@
-const apiKey = '4b470fed996e4925f1f6757cda528d08'; // Replace with your TMDb API key
-const movieContainer = document.getElementById('movie-container');
-const generateMovieBtn = document.getElementById('generate-movie-btn');
 
-generateMovieBtn.addEventListener('click', fetchMovieByPreference);
-
-async function fetchMovieByPreference() {
-    const genrePreference = document.getElementById('genre-preference').value;
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genrePreference}`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const movies = data.results;
-        
-        if (movies.length > 0) {
-            const randomIndex = Math.floor(Math.random() * movies.length);
-            const randomMovie = movies[randomIndex];
-            const movieDetails = await fetchMovieDetails(randomMovie.id);
-            displayMovie(movieDetails);
-        } else {
-            movieContainer.innerHTML = 'No movies found for this genre.';
-        }
-    } catch (error) {
-        console.error('Error fetching movies:', error);
+async function fetchData(apiUrl) {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
 }
 
-async function fetchMovieDetails(movieId) {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=release_dates`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching movie details:', error);
-    }
+function searchrecipeAPI() {
+  const recipeCategory = document.getElementById('category').value;
+  const apiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${RecipeCategory}`;
+  fetchData(apiUrl)
+    .then(data => {
+      if (data) {
+        displayResults(data);
+      } else {
+        document.getElementById('results').innerHTML = 'Failed to fetch data.';
+      }
+    });
 }
 
-function displayMovie(movie) {
-    const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-    const usRelease = movie.release_dates.results.find(release => release.iso_3166_1 === 'US');
-    const usRating = usRelease ? usRelease.release_dates[0].certification : 'N/A';
-    const kidAppropriate = ['G', 'PG'].includes(usRating);
-    const kidAppropriateText = kidAppropriate ? 'Yes' : 'No';
-    const kidAppropriateColor = kidAppropriate ? 'green' : 'red';
-
-    movieContainer.innerHTML = `
-        <h3>${movie.title}</h3>
-        <img src="${imageUrl}" alt="${movie.title} poster" />
-        <p>Release Date: ${movie.release_date}</p>
-        <p>Rating: ${movie.vote_average}/10</p>
-        <p>US Content Rating: ${usRating}</p>
-        <p>Kid-Appropriate: <span style="color: ${kidAppropriateColor};">${kidAppropriateText}</span></p>
-    `;
+function displayResults(data) {
+  // Display or process the fetched data as needed
+  console.log('Fetched data:', data);
+  document.getElementById('results').innerHTML = JSON.stringify(data, null, 2);
 }
-
