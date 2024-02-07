@@ -5,12 +5,11 @@
     <title>Date Night Planner</title>
     <link rel="stylesheet" href="./Develop/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
   </head>
 
   <body>
     <div class="container">
-      <h1>Date Night Planner</h1>
+      <h1 class="text-3xl font-bold">Date Night Planner</h1>
       <p>
         Welcome to the Date Night Planner! Use this tool to find the perfect
         movie and dining options for your next date night. Just select your
@@ -24,7 +23,7 @@
           action="your-server-side-script-url"
           method="post"
         >
-          <label for="movieGenre">Movie Genre:</label>
+          <label class="font-bold" for="movieGenre">Movie Genre:</label>
           <select id="movieGenre" name="movieGenre">
             <option value="" disabled selected>Select</option>
             <option value="action">Action</option>
@@ -36,7 +35,7 @@
             <option value="documentary">Documentary</option>
           </select>
           
-          <label for="mealCategory">Meal Specifications:</label>
+          <label class="font-bold" for="mealCategory">Meal Specifications:</label>
           <select id="mealCategory" name="mealCategory">
             <option value="" disabled selected>Select</option>
             <option value="Breakfast">Breakfast</option>
