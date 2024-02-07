@@ -2,22 +2,27 @@ const apiKey = '4b470fed996e4925f1f6757cda528d08'; // Replace with your TMDb API
 const movieContainer = document.getElementById('movie-container');
 const generateMovieBtn = document.getElementById('generate-movie-btn');
 
-generateMovieBtn.addEventListener('click', fetchRandomMovie);
+generateMovieBtn.addEventListener('click', fetchMovieByPreference);
 
-async function fetchRandomMovie() {
-    const randomPage = Math.floor(Math.random() * 500) + 1;
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&page=${randomPage}&certification_country=US&certification.lte=R&with_original_language=en`;
+async function fetchMovieByPreference() {
+    const genrePreference = document.getElementById('genre-preference').value;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genrePreference}`;
 
     try {
         const response = await fetch(url);
         const data = await response.json();
         const movies = data.results;
-        const randomIndex = Math.floor(Math.random() * movies.length);
-        const randomMovie = movies[randomIndex];
-        const movieDetails = await fetchMovieDetails(randomMovie.id);
-        displayMovie(movieDetails);
+        
+        if (movies.length > 0) {
+            const randomIndex = Math.floor(Math.random() * movies.length);
+            const randomMovie = movies[randomIndex];
+            const movieDetails = await fetchMovieDetails(randomMovie.id);
+            displayMovie(movieDetails);
+        } else {
+            movieContainer.innerHTML = 'No movies found for this genre.';
+        }
     } catch (error) {
-        console.error('Error fetching random movie:', error);
+        console.error('Error fetching movies:', error);
     }
 }
 
@@ -50,3 +55,4 @@ function displayMovie(movie) {
         <p>Kid-Appropriate: <span style="color: ${kidAppropriateColor};">${kidAppropriateText}</span></p>
     `;
 }
+
