@@ -7,10 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body>
-    <div class="container">
-      <h1 class="text-3xl font-bold">Date Night Planner</h1>
-      <p>
+  <body  class="bg-red-500">
+    <div class="max-w-2xl text-center mx-auto">
+      <h1 class="text-5xl font-bold">Date Night Planner</h1>
+      <p class="py-4">
         Welcome to the Date Night Planner! Use this tool to find the perfect
         movie and dining options for your next date night. Just select your
         preferences and let us do the rest.
@@ -23,8 +23,8 @@
           action="your-server-side-script-url"
           method="post"
         >
-          <label class="font-bold" for="movieGenre">Movie Genre:</label>
-          <select id="movieGenre" name="movieGenre">
+          <label class="block font-bold m-1" for="movieGenre">Movie Genre:</label>
+          <select class="block m-1" id="movieGenre" name="movieGenre">
             <option value="" disabled selected>Select</option>
             <option value="action">Action</option>
             <option value="romance">Romance</option>
@@ -35,8 +35,8 @@
             <option value="documentary">Documentary</option>
           </select>
           
-          <label class="font-bold" for="mealCategory">Meal Specifications:</label>
-          <select id="mealCategory" name="mealCategory">
+          <label class="block font-bold m-1" for="mealCategory">Meal Specifications:</label>
+          <select class="block m-1" id="mealCategory" name="mealCategory">
             <option value="" disabled selected>Select</option>
             <option value="Breakfast">Breakfast</option>
             <option value="Vegetarian">Vegetarian</option>
@@ -44,7 +44,7 @@
             <option value="Vegan">Vegan</option>
           </select>
           
-          <button onclick="searchAPI()">Search</button>
+          <button class="block m-1 mt-2 rounded ring-1 ring-black bg-red-300" onclick="searchAPI()">Search</button>
           <div id="results"></div>
 
         </form>
