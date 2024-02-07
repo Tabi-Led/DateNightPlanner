@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href=“https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css” rel=“stylesheet”>
-    <title>Netflix and Chill</title>
-</head>
-<body>
-    <div id="movie-list"></div>
-
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Date Night Planner</title>
+    <link rel="stylesheet" href="/Develop/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Date Night Planner</h1>
+      <p>
+        Welcome to the Date Night Planner! Use this tool to find the perfect
+        movie and dining options for your next date night. Just select your
+        preferences and let us do the rest.
+      </p>
+      <div class="form-section">
+        <!-- Add the target="_blank" attribute to open the form submission in a new tab -->
+        <form
+          id="preferencesForm"
+          target="_blank"
+          action="your-server-side-script-url"
+          method="post"
+        >
+          <label for="movieGenre">Movie Genre:</label>
+          <select id="movieGenre" name="movieGenre">
+            <option value="action">Action</option>
+            <option value="romance">Romance</option>
+            <option value="comedy">Comedy</option>
+            <option value="horror">Horror</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="drama">Drama</option>
+            <option value="documentary">Documentary</option>
+          </select>
+          <label for="mealSpecification">Meal Specifications:</label>
+          <select id="mealSpecification" name="mealSpecification">
+            <option value="breakfast">Breakfast</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="dessert">Dessert</option>
+            <option value="vegan">Vegan</option>
+          </select>
+          <button type="submit">Find Suggestions</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
