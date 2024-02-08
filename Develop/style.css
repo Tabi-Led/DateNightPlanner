@@ -1,8 +1,4 @@
-h1 {
-  color: #333;
-}
+.gradient-wall {
+background: linear-gradient(to right, black 0%, #EF4444 20%, #EF4444 80%, black 100%);
 
-.form-section {
-  text-align: left;
-  margin-top: 30px;
 }
