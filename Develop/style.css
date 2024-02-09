@@ -1,7 +1,4 @@
-body { font-family: Arial, sans-serif; background-color: #f8f8f8; }
-.container { max-width: 600px; margin: auto; padding: 20px; text-align: center; }
-h1 { color: #333; }
-p { margin-top: 0; }
-.form-section { text-align: left; margin-top: 30px; }
-label, select, button { display: block; margin: 10px 0; }
-button { cursor: pointer; }
+.gradient-wall {
+background: linear-gradient(to right, black 0%, #EF4444 20%, #EF4444 80%, black 100%);
+
+}
