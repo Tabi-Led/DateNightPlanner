@@ -46,7 +46,7 @@ async function fetchMovieData(movieApiUrl) {
 async function searchMovies() {
   const movieGenre = document.getElementById('movieGenre').value;
   // Replacing url below when i can find api 
-  const movieApiUrl = `https://api.example.com/movies?genre=${movieGenre}`;
+  const movieApiUrl = `https://api.themoviedb.org/3/authentication'${movieGenre}`;
   fetchMovieData(movieApiUrl)
     .then(movieData => {
       if (movieData) {
