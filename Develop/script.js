@@ -1,3 +1,11 @@
+let form = document.getElementById('preferencesForm');
+form.addEventListener("submit", function(event){
+  event.preventDefault();
+  searchAPI();
+
+})
+
+
 async function fetchData(recipeApiUrl) {
   try {
     const response = await fetch(recipeApiUrl);
@@ -84,8 +92,20 @@ function displayResults(recipeData) {
     const recipeElement = document.createElement('div');
     recipeElement.innerHTML = `<p>${recipe.strMeal}</p>
     <img src="${recipe.strMealThumb}" height="100">`
-    ; 
-    
+    let ingredientList = `<ul>`
+    let j = 1;
+    console.log(recipe)
+    while (true) {
+      let ingredient = recipe["strIngredient" + j]
+      console.log(ingredient)
+      if (ingredient == "" || ingredient == null){
+        break
+      }
+      ingredientList += `<li>${ingredient}</li>`
+      j++
+    } ingredientList += `</ul>`
+    console.log(ingredientList)
+    recipeElement.innerHTML += ingredientList
     resultsContainer.appendChild(recipeElement);
   }
 }
