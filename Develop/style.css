@@ -2,3 +2,8 @@
 background: linear-gradient(to right, black 0%, #EF4444 20%, #EF4444 80%, black 100%);
 
 }
+
+img {
+  max-height: 200px;
+  max-width: 200px;
+}
