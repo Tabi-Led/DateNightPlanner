@@ -3,45 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <title>Date Night Planner</title>
+    <link rel="icon" href="dnp.png" type="image/png" />
     <link rel="stylesheet" href="./Develop/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html, body {
+            min-height: 100%;
+        }
+        body {
+            margin: 0;
+        }
+    </style>
   </head>
 
-  <body  class="gradient-wall">
-    <h1 class="max-w-4xl text-center mx-auto text-7xl font-bold text-slate-800 2xl:text-8xl">Date Night Planner</h1>
+  <body class="bg-gradient-to-t from-pink-600 via-pink-550 to-pink-400">
+    <img src="dnp.png" alt="logo" class="mx-auto block w-100 h-auto">
     <div class="max-w-3xl text-center mx-auto">
-      <p class="py-4 text-2xl lg:text-xl">
-        Welcome to the Date Night Planner! Use this tool to find the perfect
-        movie and dining options for your next date night. Just select your
-        preferences and let us do the rest.
+      <p class="py-4 text-2xl lg:text-3xl font-semibold text-black mx-auto max-w-4xl leading-relaxed transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+        Welcome to the <span class="font-bold">Date Night Planner</span>! Use this tool to find the perfect movie and dining options for your next date night. Just select your preferences and let us do the rest.
       </p>
-      <div class="text-left mt-4">
-        <!-- Add the target="_blank" attribute to open the form submission in a new tab -->
-        <form
-          id="preferencesForm"
-        >
-          <label class="block font-bold m-1 text-3xl lg:text-2xl" for="movieGenre">Movie Genre:</label>
-          <select class="block m-1 text-3xl lg:text-2xl" id="movieGenre" name="movieGenre">
-            <option value="" disabled selected>Select</option>
-            <option value="action">Action</option>
-            <option value="romance">Romance</option>
-            <option value="comedy">Comedy</option>
-            <option value="horror">Horror</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="drama">Drama</option>
-            <option value="documentary">Documentary</option>
-          </select>
-          
-          <label class="block font-bold m-1 mt-3 text-3xl lg:text-2xl" for="mealCategory">Meal Specifications:</label>
-          <select class="block m-1 text-3xl lg:text-2xl" id="mealCategory" name="mealCategory">
-            <option value="" disabled selected>Select</option>
-            <option value="Breakfast">Breakfast</option>
-            <option value="Vegetarian">Vegetarian</option>
-            <option value="Dessert">Dessert</option>
-            <option value="Vegan">Vegan</option>
-          </select>
-          
-          <button class="block m-1 mt-2 rounded ring-1 ring-black bg-red-300 text-3xl lg:text-2xl" type="submit">Search</button>
+    
+    
+    <div class="text-center mt-4">
+      <form id="preferencesForm" class="max-w-4xl mx-auto">
+          <div class="flex flex-wrap justify-between items-center -mx-2">
+              <div class="px-2 w-full md:w-1/2">
+                  <label for="movieGenre" class="block font-bold text-xl lg:text-2xl mb-2">Movie Genre:</label>
+                  <select id="movieGenre" name="movieGenre" class="block w-full text-lg lg:text-xl py-2 px-4 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+                      <option value="" disabled selected>Select</option>
+                      <option value="action">Action</option>
+                      <option value="romance">Romance</option>
+                      <option value="comedy">Comedy</option>
+                      <option value="horror">Horror</option>
+                      <option value="sci-fi">Sci-Fi</option>
+                      <option value="drama">Drama</option>
+                      <option value="documentary">Documentary</option>
+                  </select>
+              </div>
+              <div class="px-2 w-full md:w-1/2">
+                  <label for="mealCategory" class="block font-bold text-xl lg:text-2xl mb-2">Meal Specifications:</label>
+                  <select id="mealCategory" name="mealCategory" class="block w-full text-lg lg:text-xl py-2 px-4 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+                      <option value="" disabled selected>Select</option>
+                      <option value="Breakfast">Breakfast</option>
+                      <option value="Vegetarian">Vegetarian</option>
+                      <option value="Dessert">Dessert</option>
+                      <option value="Vegan">Vegan</option>
+                  </select>
+              </div>
+          </div>
+          <div class="mt-4">
+            <button type="submit" class="mx-auto block rounded-lg bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50 text-red-500 text-xl lg:text-2xl px-5 py-2">Search</button>
           <div id="results"></div>
         
 
