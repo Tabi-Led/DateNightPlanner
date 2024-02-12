@@ -155,19 +155,53 @@ function displayAvatar(avatarUrl) {
   avatarContainer.appendChild(img);
   document.getElementById('avatarContainer').appendChild(avatarContainer);
 }
-const url = 'https://imdb_api4.p.rapidapi.com/get_movies_by_cast_name';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '118656cf14msh2a395320959c130p13cca2jsnf5e7d20384d2',
-		'X-RapidAPI-Host': 'imdb_api4.p.rapidapi.com'
-	}
-};
+document.getElementById('preferencesForm').addEventListener("submit", function(event){
+  event.preventDefault();
+  searchAPI();
+});
 
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	console.log(result);
-} catch (error) {
-	console.error(error);
+async function fetchData(url, options = {}) {
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
 }
+
+// Existing functions omitted for brevity...
+
+async function fetchMoviesByCastName() {
+  const url = 'https://imdb_api4.p.rapidapi.com/get_movies_by_cast_name'; // Example URL, might need adjustment
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '118656cf14msh2a395320959c130p13cca2jsnf5e7d20384d2',
+      'X-RapidAPI-Host': 'imdb_api4.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetchData(url, options);
+    console.log('Fetched movies by cast name:', response);
+    // You can now process and display this data as needed
+    // For example, you might want to display this data in a specific section of your webpage
+  } catch (error) {
+    console.error('Error fetching movies by cast name:', error);
+  }
+}
+
+// Example of how to use the new function within your existing code
+async function searchAPI() {
+  // Your existing searchAPI implementation...
+
+  // Call fetchMoviesByCastName at an appropriate place within searchAPI
+  // For demonstration purposes, let's call it here
+  await fetchMoviesByCastName();
+}
+
+// Make sure to adjust the URL and parameters in fetchMoviesByCastName according to your actual requirements
