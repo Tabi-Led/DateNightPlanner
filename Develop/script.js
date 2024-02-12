@@ -155,3 +155,19 @@ function displayAvatar(avatarUrl) {
   avatarContainer.appendChild(img);
   document.getElementById('avatarContainer').appendChild(avatarContainer);
 }
+const url = 'https://imdb_api4.p.rapidapi.com/get_movies_by_cast_name';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '118656cf14msh2a395320959c130p13cca2jsnf5e7d20384d2',
+		'X-RapidAPI-Host': 'imdb_api4.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}
