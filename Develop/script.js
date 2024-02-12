@@ -154,54 +154,73 @@ function displayAvatar(avatarUrl) {
   img.alt = 'avatar';
   avatarContainer.appendChild(img);
   document.getElementById('avatarContainer').appendChild(avatarContainer);
+}//Global variables//
+var id = "c1209f71"
+var key = "bfada42bc6c1d17e1c160975a2313f78"
+var inputVal = []
+console.log(inputVal)
+
+
+//Drink function//
+function getDrink() {
+    //Getting the value of the user specified drink selection//
+    var drinkSelection = $("input[name=selector]:checked").val();
+    console.log(drinkSelection);
+
+    //Cocktail db URL with user specified drink selection//
+    var queryURLdrink = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + drinkSelection;
+    
+
+    //AJAX call getting each drink name, image, and drink id//
+    $.ajax({
+        type: "GET",
+        url: queryURLdrink,
+    }).then(function(response) {
+        console.log(queryURLdrink);
+        console.log(response);
+
+        //Page scroll animation//
+        $("html, body").animate({ scrollTop: "700px" }, 1000);
+
+        //Randomizing the drink selection//
+        var rand = Math.floor((Math.random() * response.drinks.length));
+        console.log(response.drinks.length);
+        $(".drinkCard-title").html(response.drinks[rand].strDrink);
+        $(".drinkCard-img-top").attr("src", response.drinks[rand].strDrinkThumb);
+        var drinkId = (response.drinks[rand].idDrink);
+        console.log(drinkId);
+
+
+        
+        //Cocktail db URL referencing the drink id from the previous call//
+        var queryURLid = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + drinkId;
+        
+        //AJAX call getting each drink ingredient, unit of measure, and recipe instructions//
+        $.ajax({
+            type: "GET",
+            url: queryURLid,
+        }).then(function(response) {
+            console.log(queryURLid);
+            console.log(response);
+            $(".drinkCard-text").empty();
+            var list = $("<ul>");
+            $(".drinkCard-text").append(list);
+            
+
+            //For loop looping through and appending each drink unit of measure and ingredient//
+            for (var i = 1; i < 16; i++) {
+                var item = $("<li>")
+                ingredient = response.drinks[0]["strIngredient" + i];
+                unit = response.drinks[0]["strMeasure" + i];
+                if (ingredient){
+                    item.html(unit + " " + ingredient);
+                    list.append(item)
+                }
+            }
+            //Getting the drink instructions and appending them to the drink card//
+            var p = $("<p>");
+            p.html("<h5>Instructions:</h5> \n" + response.drinks[0].strInstructions);
+            $(".drinkCard-text").append(p);
+        });
+    });
 }
-document.getElementById('preferencesForm').addEventListener("submit", function(event){
-  event.preventDefault();
-  searchAPI();
-});
-
-async function fetchData(url, options = {}) {
-  try {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return null;
-  }
-}
-
-// Existing functions omitted for brevity...
-
-async function fetchMoviesByCastName() {
-  const url = 'https://imdb_api4.p.rapidapi.com/get_movies_by_cast_name'; // Example URL, might need adjustment
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '118656cf14msh2a395320959c130p13cca2jsnf5e7d20384d2',
-      'X-RapidAPI-Host': 'imdb_api4.p.rapidapi.com'
-    }
-  };
-
-  try {
-    const response = await fetchData(url, options);
-    console.log('Fetched movies by cast name:', response);
-    // You can now process and display this data as needed
-    // For example, you might want to display this data in a specific section of your webpage
-  } catch (error) {
-    console.error('Error fetching movies by cast name:', error);
-  }
-}
-
-// Example of how to use the new function within your existing code
-async function searchAPI() {
-  // Your existing searchAPI implementation...
-
-  // Call fetchMoviesByCastName at an appropriate place within searchAPI
-  // For demonstration purposes, let's call it here
-  await fetchMoviesByCastName();
-}
-
-// Make sure to adjust the URL and parameters in fetchMoviesByCastName according to your actual requirements
