@@ -17,7 +17,6 @@ async function fetchData(recipeApiUrl) {
     return null;
   }
 }
-
 async function fetchAvatar(avatar) {
   try {
     const response = await fetch(avatar);
@@ -31,7 +30,6 @@ async function fetchAvatar(avatar) {
     return null;
   }
 }
-
 // Function to fetch movie data based on selected genre
 async function fetchMovieData(movieApiUrl) {
   try {
@@ -42,7 +40,6 @@ async function fetchMovieData(movieApiUrl) {
     console.error(error);
   }
 }
-
 async function searchAPI() {
   const recipeCategory = document.getElementById("drinkCategory").value;
   const recipeApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
@@ -53,7 +50,6 @@ async function searchAPI() {
     document.getElementById("results").innerHTML = "Failed to fetch data.";
   }
 }
-
 async function searchAPI() {
   const recipeCategory = document.getElementById("mealCategory").value;
   const recipeApiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipeCategory}`;
@@ -64,7 +60,6 @@ async function searchAPI() {
     document.getElementById("results").innerHTML = "Failed to fetch data.";
   }
 }
-
 async function displayRecipes(recipes) {
   const shuffledRecipes = shuffle(recipes);
 
@@ -84,7 +79,6 @@ function shuffle(array) {
   }
   return array;
 }
-
 async function fetchMealData(mealId) {
   const mealApiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
   return await fetchData(mealApiUrl);
@@ -124,13 +118,11 @@ function displayIngredients(recipeElement, mealData, mealName) {
   ingredientsContainer.appendChild(ingredientsList); 
   recipeElement.appendChild(ingredientsContainer);
 }
-
 async function displayMovieResults(movieData) {
   console.log("Fetched movie data:", movieData);
   document.getElementById("results").innerHTML +=
     "<h2>Movie Results</h2>" + JSON.stringify(movieData, null, 2);
 }
-
 function displayAvatar(avatarUrl) {
   const avatarContainer = document.createElement("div");
   const img = document.createElement("img");
