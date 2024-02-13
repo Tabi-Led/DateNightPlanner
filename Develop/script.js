@@ -54,6 +54,17 @@ async function searchAPI() {
   }
 }
 async function searchAPI() {
+  const recipeCategory = document.getElementById("drinkCategory").value;
+  const recipeApiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipeCategory}`;
+  const recipeData = await fetchData(recipeApiUrl);
+  if (recipeData) {
+    displayRecipes(recipeData.meals);
+  } else {
+    document.getElementById("results").innerHTML = "Failed to fetch data.";
+  }
+}
+
+async function searchAPI() {
   const recipeCategory = document.getElementById("mealCategory").value;
   const recipeApiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipeCategory}`;
   const recipeData = await fetchData(recipeApiUrl);
