@@ -41,6 +41,7 @@ async function searchAPI() {
     document.getElementById("results").innerHTML = "Failed to fetch data.";
   }
 }
+
 async function searchAPI() {
   const recipeCategory = document.getElementById("mealCategory").value;
   const recipeApiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipeCategory}`;
@@ -51,6 +52,7 @@ async function searchAPI() {
     document.getElementById("results").innerHTML = "Failed to fetch data.";
   }
 }
+
 async function displayRecipes(recipes) {
   const shuffledRecipes = shuffle(recipes);
 
@@ -62,7 +64,6 @@ async function displayRecipes(recipes) {
  
 }
 
-
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -70,6 +71,7 @@ function shuffle(array) {
   }
   return array;
 }
+
 async function fetchMealData(mealId) {
   const mealApiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
   return await fetchData(mealApiUrl);
@@ -109,11 +111,7 @@ function displayIngredients(recipeElement, mealData, mealName) {
   ingredientsContainer.appendChild(ingredientsList); 
   recipeElement.appendChild(ingredientsContainer);
 }
-async function displayMovieResults(movieData) {
-  console.log("Fetched movie data:", movieData);
-  document.getElementById("results").innerHTML +=
-    "<h2>Movie Results</h2>" + JSON.stringify(movieData, null, 2);
-}
+
 function displayAvatar(avatarUrl) {
   const avatarContainer = document.createElement("div");
   const img = document.createElement("img");
@@ -125,13 +123,13 @@ function displayAvatar(avatarUrl) {
 
 // added cocktail code 
 const cocktailType = document.getElementById("cocktailType").value;
-  const cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktailType}`;
-  const cocktailData = await fetchData(cocktailApiUrl);
-  if (cocktailData) {
-    displayCocktails(cocktailData.drinks);
-  } else {
-    document.getElementById("results").innerHTML += "<br>Failed to fetch cocktail data.";
-  }
+const cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktailType}`;
+const cocktailData = await fetchData(cocktailApiUrl);
+if (cocktailData) {
+  displayCocktails(cocktailData.drinks);
+} else {
+  document.getElementById("results").innerHTML += "<br>Failed to fetch cocktail data.";
+}
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -164,6 +162,7 @@ async function displayCocktails(cocktails) {
     resultsContainer.appendChild(cocktailElement);
   });
 }
+
 // last generated display storage- goes away after the page is refreshed 
 // Function to send results to server
 function storeResults(results) {
