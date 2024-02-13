@@ -3,6 +3,7 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
   searchAPI();
 });
+
 async function fetchData(recipeApiUrl) {
   try {
     const response = await fetch(recipeApiUrl);
@@ -70,8 +71,9 @@ async function displayRecipes(recipes) {
   for (let i = 0; i < 5 && i < shuffledRecipes.length; i++) {
     const recipe = shuffledRecipes[i];
     const recipeElement = document.createElement("div");
-    recipeElement.classList.add("recipe", "grid", "grid-cols-4", "gap-4");
+    recipeElement.classList.add("recipe", "grid", "grid-cols-4",);
     recipeElement.innerHTML = `<div><img src="${recipe.strMealThumb}" height="200"></div> `;
+
     const mealData = await fetchMealData(recipe.idMeal);
     if (mealData) {
       displayIngredients(recipeElement, mealData.meals[0], recipe.strMeal);
@@ -92,19 +94,26 @@ async function fetchMealData(mealId) {
   const mealApiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
   return await fetchData(mealApiUrl);
 }
+
 function displayIngredients(recipeElement, mealData, mealName) {
   const ingredientsContainer = document.createElement("section");
   ingredientsContainer.classList.add("ingredients");
+
   const meal = document.createElement('h1');
   meal.innerText = mealName
+
+
   const ingredientsTitle = document.createElement("h2");
   ingredientsTitle.classList.add("ingredientTitle");
   ingredientsTitle.textContent = "Ingredients";
+
   const ingredientsList = document.createElement("div");
   ingredientsList.classList.add("ingredientslist");
+
   for (let j = 1; j <= 5; j++) {
     const ingredient = mealData[`strIngredient${j}`];
     const measure = mealData[`strMeasure${j}`];
+
     if (ingredient) {
       const ingredientItem = document.createElement("li");
       ingredientItem.textContent = measure
@@ -116,8 +125,8 @@ function displayIngredients(recipeElement, mealData, mealName) {
     }
   }
   ingredientsContainer.appendChild(meal);
-  ingredientsContainer.appendChild(ingredientsTitle);
-  ingredientsContainer.appendChild(ingredientsList);
+  ingredientsContainer.appendChild(ingredientsTitle); 
+  ingredientsContainer.appendChild(ingredientsList); 
   recipeElement.appendChild(ingredientsContainer);
 }
 async function displayMovieResults(movieData) {
