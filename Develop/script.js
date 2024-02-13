@@ -116,7 +116,7 @@ function displayIngredients(recipeElement, mealData, mealName) {
   ingredientsTitle.textContent = "Ingredients";
 
   const ingredientsList = document.createElement("div");
-  ingredientsList.classList.add("ingredientslist");
+  ingredientsList.classList.add("ingredientslist", "list-none");
 
   for (let j = 1; j <= 5; j++) {
     const ingredient = mealData[`strIngredient${j}`];
