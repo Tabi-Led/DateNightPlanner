@@ -4,28 +4,6 @@ form.addEventListener("submit", function (event) {
   searchAPI();
 });
 
-const url = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'a45f73db28msh8a496d9ee8ac44fp1fecbcjsnfe0bbac67e1c',
-		'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-	}
-};
-
-fetch(url, options)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.text();
-  })
-  .then(result => {
-    console.log(result);
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
 
 
 
@@ -69,6 +47,17 @@ async function fetchMovieData(movieApiUrl) {
   } catch (error) {
     console.error("Error fetching movie data:", error);
     return null;
+  }
+}
+
+async function searchAPI() {
+  const recipeCategory = document.getElementById("drinkCategory").value;
+  const recipeApiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipeCategory}`;
+  const recipeData = await fetchData(recipeApiUrl);
+  if (recipeData) {
+    displayRecipes(recipeData.meals);
+  } else {
+    document.getElementById("results").innerHTML = "Failed to fetch data.";
   }
 }
 
