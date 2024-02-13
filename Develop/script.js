@@ -30,16 +30,7 @@ async function fetchAvatar(avatar) {
     return null;
   }
 }
-// Function to fetch movie data based on selected genre
-async function fetchMovieData(movieApiUrl) {
-  try {
-    const response = await fetch(url, options);
-    const result = await response.text();
-    console.log(result);
-  } catch (error) {
-    console.error(error);
-  }
-}
+
 async function searchAPI() {
   const recipeCategory = document.getElementById("drinkCategory").value;
   const recipeApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
