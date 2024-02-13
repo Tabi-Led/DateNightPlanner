@@ -70,7 +70,7 @@ async function displayRecipes(recipes) {
   for (let i = 0; i < 5 && i < shuffledRecipes.length; i++) {
     const recipe = shuffledRecipes[i];
     const recipeElement = document.createElement("div");
-    recipeElement.classList.add("recipe", "grid", "grid-cols-4",);
+    recipeElement.classList.add("recipe", "grid", "grid-cols-4", "gap-4");
     recipeElement.innerHTML = `<div><img src="${recipe.strMealThumb}" height="200"></div> `;
     const mealData = await fetchMealData(recipe.idMeal);
     if (mealData) {
