@@ -35,15 +35,11 @@ async function fetchAvatar(avatar) {
 // Function to fetch movie data based on selected genre
 async function fetchMovieData(movieApiUrl) {
   try {
-    const response = await fetch(movieApiUrl);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
-    return data;
+    const response = await fetch(url, options);
+    const result = await response.text();
+    console.log(result);
   } catch (error) {
-    console.error("Error fetching movie data:", error);
-    return null;
+    console.error(error);
   }
 }
 
@@ -71,24 +67,15 @@ async function searchAPI() {
 
 async function displayRecipes(recipes) {
   const shuffledRecipes = shuffle(recipes);
-  const resultsContainer = document.getElementById("results");
-  resultsContainer.innerHTML = "";
-  for (let i = 0; i < 5 && i < shuffledRecipes.length; i++) {
-    const recipe = shuffledRecipes[i];
-    const recipeElement = document.createElement("div");
-    recipeElement.classList.add("recipe", "grid", "grid-cols-4",);
-    recipeElement.innerHTML = `<div><img src="${recipe.strMealThumb}" height="200"></div> `;
 
-    const mealData = await fetchMealData(recipe.idMeal);
-    if (mealData) {
-      displayIngredients(recipeElement, mealData.meals[0], recipe.strMeal);
-    } else {
-      console.error(`Failed to fetch meal data for meal ID ${recipe.idMeal}.`);
-    }
+  const limitedRecipes = shuffledRecipes.slice(0, 5); // Limit to 5 recipes
+  const encodedData = encodeURIComponent(JSON.stringify(limitedRecipes));
 
-    resultsContainer.appendChild(recipeElement);
-  }
+  // Redirect to the second page with encoded data in the URL
+  window.location.href = `second.html?data=${encodedData}`;
+ 
 }
+
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
