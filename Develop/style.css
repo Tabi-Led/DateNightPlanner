@@ -1,27 +1,29 @@
 img {
   max-height: 200px;
   max-width: 200px;
+  margin-bottom: 20px ;
 }
 
 .recipe {
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
+  border-bottom: 3px solid black;
+  width: 5;
   display:flex;
- 
   margin-bottom: 20px;
 }
 
 
-.ingredientTitle {
-  font-size: large;
-  font-weight:600;
-  position: relative;
-  
+
+/*secondpage*/
+.sidebar {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
 }
 
-.ingredientslist {
-  position: relative;
-  
+.main_results {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
 }
+
 
