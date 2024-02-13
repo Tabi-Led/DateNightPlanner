@@ -1,33 +1,29 @@
-.gradient-wall {
-background: linear-gradient(to right, black 0%, #EF4444 20%, #EF4444 80%, black 100%);
-
-}
-
 img {
   max-height: 200px;
   max-width: 200px;
+  margin-bottom: 20px ;
 }
 
 .recipe {
-  border-style: solid;
-  border-color: black;
-  border-width: 2px;
+  border-bottom: 3px solid black;
+  width: 5;
   display:flex;
- 
   margin-bottom: 20px;
 }
 
-.ingredientTitle {
-  font-size: large;
-  font-weight:600;
-  position: relative;
-  bottom: -40px;
-  left: -50px;
+
+
+/*secondpage*/
+.sidebar {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
 }
 
-.ingredientslist {
-  position: relative;
-  left: -180px;
-  bottom: -70px;
-  
+.main_results {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
 }
+
+
