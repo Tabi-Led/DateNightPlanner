@@ -157,3 +157,80 @@ function displayAvatar(avatarUrl) {
   avatarContainer.appendChild(img);
   document.getElementById("avatarContainer").appendChild(avatarContainer);
 }
+
+// added cocktail code 
+const cocktailType = document.getElementById("cocktailType").value;
+  const cocktailApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktailType}`;
+  const cocktailData = await fetchData(cocktailApiUrl);
+  if (cocktailData) {
+    displayCocktails(cocktailData.drinks);
+  } else {
+    document.getElementById("results").innerHTML += "<br>Failed to fetch cocktail data.";
+  }
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+async function displayRecipes(recipes) {
+  const shuffledRecipes = shuffle(recipes);
+  const resultsContainer = document.getElementById("results");
+  resultsContainer.innerHTML = "<h2>Recipes</h2>";
+  shuffledRecipes.slice(0, 5).forEach(recipe => {
+    const recipeElement = document.createElement("div");
+    recipeElement.classList.add("recipe");
+    recipeElement.innerHTML = `<img src="${recipe.strMealThumb}" height="200"> <h2>${recipe.strMeal}</h2>`;
+    resultsContainer.appendChild(recipeElement);
+  });
+}
+
+async function displayCocktails(cocktails) {
+  const shuffledCocktails = shuffle(cocktails);
+  const resultsContainer = document.getElementById("results");
+  resultsContainer.innerHTML += "<h2>Cocktails</h2>";
+  shuffledCocktails.slice(0, 5).forEach(cocktail => {
+    const cocktailElement = document.createElement("div");
+    cocktailElement.classList.add("cocktail");
+    cocktailElement.innerHTML = `<img src="${cocktail.strDrinkThumb}" height="200"> <h2>${cocktail.strDrink}</h2>`;
+    resultsContainer.appendChild(cocktailElement);
+  });
+}
+// last generated display storage- goes away after the page is refreshed 
+// Function to send results to server
+function storeResults(results) {
+  fetch('/store-results', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(results),
+  })
+  .then(response => response.json())
+  .then(data => console.log(data.message))
+  .catch(error => console.error('Error storing results:', error));
+}
+
+// Function to fetch last results on page load
+function getLastResults() {
+  fetch('/get-last-results')
+    .then(response => response.json())
+    .then(data => {
+      // Assuming 'data' is your results object
+      // Display these results appropriately
+      console.log('Last results:', data);
+      // For example, if data contains recipes:
+      if(data && data.meals) {
+        displayRecipes(data.meals);
+      }
+      // If data contains cocktails, add similar handling
+    })
+    .catch(error => console.error('Error fetching last results:', error));
+}
+
+// Call getLastResults on page load
+document.addEventListener('DOMContentLoaded', getLastResults);
+
