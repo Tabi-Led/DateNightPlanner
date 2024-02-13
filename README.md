@@ -1,5 +1,5 @@
 # Date Night Planner
-![logo](./example.png)
+![logo](dnp.png)
 
 ## Introduction
 The Date Night Planner is an innovative web application meticulously crafted to assist both couples and individuals in orchestrating an idyllic date night experience. By facilitating the selection of movie genres and meal types, the platform ensures users are presented with custom-tailored recommendations, thereby enhancing their evening with memorable and enriching options. This application streamlines the decision-making process and unveils novel possibilities that users may not have previously contemplated.
