@@ -4,9 +4,6 @@ form.addEventListener("submit", function (event) {
   searchAPI();
 });
 
-
-
-
 async function fetchData(recipeApiUrl) {
   try {
     const response = await fetch(recipeApiUrl);
@@ -79,12 +76,12 @@ async function displayRecipes(recipes) {
   for (let i = 0; i < 5 && i < shuffledRecipes.length; i++) {
     const recipe = shuffledRecipes[i];
     const recipeElement = document.createElement("div");
-    recipeElement.classList.add("recipe");
-    recipeElement.innerHTML = `<img src="${recipe.strMealThumb}" height="200"> <H2>${recipe.strMeal}</H2>`;
+    recipeElement.classList.add("recipe", "grid", "grid-cols-4",);
+    recipeElement.innerHTML = `<div><img src="${recipe.strMealThumb}" height="200"></div> `;
 
     const mealData = await fetchMealData(recipe.idMeal);
     if (mealData) {
-      displayIngredients(recipeElement, mealData.meals[0]);
+      displayIngredients(recipeElement, mealData.meals[0], recipe.strMeal);
     } else {
       console.error(`Failed to fetch meal data for meal ID ${recipe.idMeal}.`);
     }
@@ -106,16 +103,25 @@ async function fetchMealData(mealId) {
   return await fetchData(mealApiUrl);
 }
 
-function displayIngredients(recipeElement, mealData) {
-  const ingredientsTitle = document.createElement("h3");
+function displayIngredients(recipeElement, mealData, mealName) {
+  const ingredientsContainer = document.createElement("section");
+  ingredientsContainer.classList.add("ingredients");
+
+  const meal = document.createElement('h1');
+  meal.innerText = mealName
+
+
+  const ingredientsTitle = document.createElement("h2");
   ingredientsTitle.classList.add("ingredientTitle");
   ingredientsTitle.textContent = "Ingredients";
-  recipeElement.appendChild(ingredientsTitle);
-  const ingredientsList = document.createElement("ul");
-  ingredientsList.classList.add('ingredientslist')
+
+  const ingredientsList = document.createElement("div");
+  ingredientsList.classList.add("ingredientslist");
+
   for (let j = 1; j <= 5; j++) {
     const ingredient = mealData[`strIngredient${j}`];
     const measure = mealData[`strMeasure${j}`];
+
     if (ingredient) {
       const ingredientItem = document.createElement("li");
       ingredientItem.textContent = measure
@@ -126,9 +132,9 @@ function displayIngredients(recipeElement, mealData) {
       break;
     }
   }
-  const ingredientsContainer = document.createElement("div");
-  ingredientsContainer.classList.add("ingredients");
-  ingredientsContainer.appendChild(ingredientsList);
+  ingredientsContainer.appendChild(meal);
+  ingredientsContainer.appendChild(ingredientsTitle); 
+  ingredientsContainer.appendChild(ingredientsList); 
   recipeElement.appendChild(ingredientsContainer);
 }
 

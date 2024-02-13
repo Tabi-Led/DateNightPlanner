@@ -17,17 +17,3 @@ img {
   margin-bottom: 20px;
 }
 
-.ingredientTitle {
-  font-size: large;
-  font-weight:600;
-  position: relative;
-  bottom: -40px;
-  left: -50px;
-}
-
-.ingredientslist {
-  position: relative;
-  left: -180px;
-  bottom: -70px;
-  
-}
