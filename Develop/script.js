@@ -45,7 +45,7 @@ async function fetchMovieData(movieApiUrl) {
 
 async function searchAPI() {
   const recipeCategory = document.getElementById("drinkCategory").value;
-  const recipeApiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipeCategory}`;
+  const recipeApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
   const recipeData = await fetchData(recipeApiUrl);
   if (recipeData) {
     displayRecipes(recipeData.meals);
@@ -67,11 +67,13 @@ async function searchAPI() {
 
 async function displayRecipes(recipes) {
   const shuffledRecipes = shuffle(recipes);
+
   const limitedRecipes = shuffledRecipes.slice(0, 5); // Limit to 5 recipes
   const encodedData = encodeURIComponent(JSON.stringify(limitedRecipes));
 
   // Redirect to the second page with encoded data in the URL
   window.location.href = `second.html?data=${encodedData}`;
+ 
 }
 
 
@@ -88,16 +90,25 @@ async function fetchMealData(mealId) {
   return await fetchData(mealApiUrl);
 }
 
-function displayIngredients(recipeElement, mealData) {
-  const ingredientsTitle = document.createElement("h3");
+function displayIngredients(recipeElement, mealData, mealName) {
+  const ingredientsContainer = document.createElement("section");
+  ingredientsContainer.classList.add("ingredients");
+
+  const meal = document.createElement('h1');
+  meal.innerText = mealName
+
+
+  const ingredientsTitle = document.createElement("h2");
   ingredientsTitle.classList.add("ingredientTitle");
   ingredientsTitle.textContent = "Ingredients";
-  recipeElement.appendChild(ingredientsTitle);
-  const ingredientsList = document.createElement("ul");
-  ingredientsList.classList.add('ingredientslist')
+
+  const ingredientsList = document.createElement("div");
+  ingredientsList.classList.add("ingredientslist");
+
   for (let j = 1; j <= 5; j++) {
     const ingredient = mealData[`strIngredient${j}`];
     const measure = mealData[`strMeasure${j}`];
+
     if (ingredient) {
       const ingredientItem = document.createElement("li");
       ingredientItem.textContent = measure
@@ -108,9 +119,9 @@ function displayIngredients(recipeElement, mealData) {
       break;
     }
   }
-  const ingredientsContainer = document.createElement("div");
-  ingredientsContainer.classList.add("ingredients");
-  ingredientsContainer.appendChild(ingredientsList);
+  ingredientsContainer.appendChild(meal);
+  ingredientsContainer.appendChild(ingredientsTitle); 
+  ingredientsContainer.appendChild(ingredientsList); 
   recipeElement.appendChild(ingredientsContainer);
 }
 
