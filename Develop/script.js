@@ -49,7 +49,7 @@ async function fetchMovieData(movieApiUrl) {
 
 async function searchAPI() {
   const recipeCategory = document.getElementById("drinkCategory").value;
-  const recipeApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list${recipeCategory}`;
+  const recipeApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
   const recipeData = await fetchData(recipeApiUrl);
   if (recipeData) {
     displayRecipes(recipeData.meals);
