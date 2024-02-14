@@ -2,6 +2,7 @@ let form = document.getElementById("preferencesForm");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   searchAPI();
+  showModal();
 });
 
 async function fetchData(url) {
@@ -146,4 +147,23 @@ function displayDrinkIngredients(recipeElement, drinkData) {
   ingredientsContainer.appendChild(ingredientsTitle);
   ingredientsContainer.appendChild(ingredientsList);
   recipeElement.appendChild(ingredientsContainer);
+}
+
+
+function showModal() {
+  document.getElementById('modal').classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.add('hidden');
+}
+
+document.getElementById('okButton').addEventListener('click', closeModal);
+
+// Optional: Close the modal if the user clicks anywhere outside the modal content
+window.onclick = function(event) {
+  let modal = document.getElementById('modal');
+  if (event.target == modal) {
+    closeModal();
+  }
 }

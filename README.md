@@ -7,11 +7,11 @@ The Date Night Planner is an innovative web application meticulously crafted to 
 ## Features
 **Curated Movie Selection:** Engage with an extensive array of film genres to discover a movie that resonates with your current disposition. Whether you're in the mood for a thrilling adventure, a heartwarming romance, or a belly-aching comedy, our curated selection ensures you find the perfect cinematic experience to complement your evening.
 
-![FoodImage](./food.png)
+![DrinkImage](./drink.png)
 
  **Personalized Meal Recommendations:** Receive bespoke suggestions for culinary delights that cater to your specific dietary preferences. From sumptuous vegetarian dishes and indulgent desserts to health-conscious vegan options, our platform is designed to accommodate a diverse range of culinary tastes and requirements.
 
- ![FoodImage](./example.png)
+ ![FoodImage](./food.png)
 
  **Responsive Design for All Devices:** Experience flawless functionality across a multitude of devices with our mobile-friendly and responsive design. Whether planning your date night on the go or from the comfort of your home, our platform guarantees a seamless user experience devoid of compromise.
 
