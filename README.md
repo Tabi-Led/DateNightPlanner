@@ -18,6 +18,10 @@ The Date Night Planner is an innovative web application meticulously crafted to 
  ![MobileView](./example.png)
 
  ## The Date Night Planner stands as a testament to our commitment to enhancing your date night experience by delivering personalized, thoughtful recommendations that cater to your unique preferences and desires.
+links:
+https://github.com/Tabi-Led/DateNightPlanner
+https://tabi-led.github.io/DateNightPlanner/
+
 
 Breakdown of tasks 
 Adama- CSS 
