@@ -109,14 +109,15 @@ function displayIngredients(recipeElement, mealData, mealName) {
 
   const meal = document.createElement('h1');
   meal.innerText = mealName
+  meal.classList.add("font-bold", "underline", "pb-2")
 
 
   const ingredientsTitle = document.createElement("h2");
-  ingredientsTitle.classList.add("ingredientTitle");
-  ingredientsTitle.textContent = "Ingredients";
+  ingredientsTitle.classList.add("ingredientTitle", "text-sm");
+  ingredientsTitle.textContent = "-Ingredients-";
 
   const ingredientsList = document.createElement("div");
-  ingredientsList.classList.add("ingredientslist");
+  ingredientsList.classList.add("ingredientslist", "list-none", "italic", "text-xs", "text-left", "ml-2", "text-bottom");
 
   for (let j = 1; j <= 5; j++) {
     const ingredient = mealData[`strIngredient${j}`];
