@@ -74,5 +74,3 @@ function decodeData(encodedData) {
       resultsContainer.appendChild(recipeElement);
     });
   }
-
-  
