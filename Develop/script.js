@@ -50,7 +50,7 @@ async function searchAPI() {
   if (recipeData) {
     displayRecipes(recipeData.meals);
   } else {
-    document.getElementById("results").innerHTML = "Failed to fetch data.";
+    window.alert("Failed to fetch data. Please try again.");
   }
 }
 async function searchAPI() {
@@ -60,7 +60,7 @@ async function searchAPI() {
   if (recipeData) {
     displayRecipes(recipeData.meals);
   } else {
-    document.getElementById("results").innerHTML = "Failed to fetch data.";
+    window.alert("Failed to fetch data. Please try again.");
   }
 }
 async function displayRecipes(recipes) {
