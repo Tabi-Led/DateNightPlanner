@@ -17,7 +17,6 @@ async function fetchData(recipeApiUrl) {
     return null;
   }
 }
-
 async function fetchAvatar(avatar) {
   try {
     const response = await fetch(avatar);
@@ -31,22 +30,16 @@ async function fetchAvatar(avatar) {
     return null;
   }
 }
-
 // Function to fetch movie data based on selected genre
 async function fetchMovieData(movieApiUrl) {
   try {
-    const response = await fetch(movieApiUrl);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
-    return data;
+    const response = await fetch(url, options);
+    const result = await response.text();
+    console.log(result);
   } catch (error) {
-    console.error("Error fetching movie data:", error);
-    return null;
+    console.error(error);
   }
 }
-
 async function searchAPI() {
   const recipeCategory = document.getElementById("drinkCategory").value;
   const recipeApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
@@ -57,7 +50,6 @@ async function searchAPI() {
     window.alert("Failed to fetch data. Please try again.");
   }
 }
-
 async function searchAPI() {
   const recipeCategory = document.getElementById("mealCategory").value;
   const recipeApiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipeCategory}`;
@@ -68,27 +60,17 @@ async function searchAPI() {
     window.alert("Failed to fetch data. Please try again.");
   }
 }
-
 async function displayRecipes(recipes) {
   const shuffledRecipes = shuffle(recipes);
-  const resultsContainer = document.getElementById("results");
-  resultsContainer.innerHTML = "";
-  for (let i = 0; i < 5 && i < shuffledRecipes.length; i++) {
-    const recipe = shuffledRecipes[i];
-    const recipeElement = document.createElement("div");
-    recipeElement.classList.add("recipe", "grid", "grid-cols-4",);
-    recipeElement.innerHTML = `<div><img src="${recipe.strMealThumb}" height="200"></div> `;
 
-    const mealData = await fetchMealData(recipe.idMeal);
-    if (mealData) {
-      displayIngredients(recipeElement, mealData.meals[0], recipe.strMeal);
-    } else {
-      console.error(`Failed to fetch meal data for meal ID ${recipe.idMeal}.`);
-    }
+  const limitedRecipes = shuffledRecipes.slice(0, 5); // Limit to 5 recipes
+  const encodedData = encodeURIComponent(JSON.stringify(limitedRecipes));
 
-    resultsContainer.appendChild(recipeElement);
-  }
+  // Redirect to the second page with encoded data in the URL
+  window.location.href = `second.html?data=${encodedData}`;
+ 
 }
+
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -97,7 +79,6 @@ function shuffle(array) {
   }
   return array;
 }
-
 async function fetchMealData(mealId) {
   const mealApiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
   return await fetchData(mealApiUrl);
@@ -138,13 +119,11 @@ function displayIngredients(recipeElement, mealData, mealName) {
   ingredientsContainer.appendChild(ingredientsList); 
   recipeElement.appendChild(ingredientsContainer);
 }
-
 async function displayMovieResults(movieData) {
   console.log("Fetched movie data:", movieData);
   document.getElementById("results").innerHTML +=
     "<h2>Movie Results</h2>" + JSON.stringify(movieData, null, 2);
 }
-
 function displayAvatar(avatarUrl) {
   const avatarContainer = document.createElement("div");
   const img = document.createElement("img");
