@@ -13,7 +13,7 @@ img {
   display:flex;
   margin-bottom: 20px;
 }
-}
+
 
 
 
@@ -28,4 +28,37 @@ img {
   border-style: solid;
   border-color: black;
   border-width: 2px;
+}
+
+
+/* Base styles */
+.recipe {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .recipe {
+    grid-template-columns: 1fr; /* Stack elements vertically */
+  }
+}
+
+
+.recipe {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.recipe div {
+  flex: 1 1 200px; /* Each child flex item can grow and shrink but starts at 200px */
+  margin: 10px;
+}
+
+@media (max-width: 768px) {
+  .recipe div {
+    flex: 1 1 100%; /* On small screens, take full width */
+  }
 }
